@@ -2,6 +2,7 @@ package br.alura.challenge.forum.domain;
 
 import java.time.LocalDate;
 
+import br.alura.challenge.forum.dto.DadosAtualizacaoTopico;
 import br.alura.challenge.forum.dto.DadosTopico;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,4 +43,15 @@ public class Topico {
         this.dataCriacao = LocalDate.now();
     }
 
+   public void atualizarInformacoes(DadosAtualizacaoTopico dados) {
+    if (dados.titulo() != null) {
+        this.titulo = dados.titulo();
+    }
+    if (dados.mensagem() != null) {
+        this.mensagem = dados.mensagem();
+    }
+    if (dados.curso() != null) {
+        this.curso = dados.curso();
+    }
+}
 }
