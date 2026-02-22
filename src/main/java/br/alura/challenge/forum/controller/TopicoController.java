@@ -6,21 +6,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.alura.challenge.forum.domain.Topico;
 import br.alura.challenge.forum.dto.DadosTopico;
-import br.alura.challenge.forum.repository.TopicoRepository;
+import br.alura.challenge.forum.service.TopicoService;
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/topicos")
+@RequestMapping("/forum/topicos")
 public class TopicoController {
 
-    @Autowired
-    private TopicoRepository repository;
+    @Autowired 
+    private TopicoService service;
 
     @PostMapping
-    public void cadastrarNovoTopico(@RequestBody DadosTopico dados) {
-        Topico novoTopico = new Topico(dados);
-        repository.save(novoTopico);
+    public void cadastrarNovoTopico(@RequestBody @Valid DadosTopico dados) {
+        service.cadastrarTopico(dados);
     }
 
 }
