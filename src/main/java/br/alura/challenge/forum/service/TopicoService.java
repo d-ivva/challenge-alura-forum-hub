@@ -49,4 +49,13 @@ public class TopicoService {
 
         return new DadosDetalhamentoTopico(topico); 
     }
+
+    @Transactional
+    public void excluirTopico(Long id) {
+        var topico = repository.findById(id);
+        if (!topico.isPresent()){
+            throw new EntityNotFoundException("Tópico não encontrado.");
+        }
+        repository.deleteById(id);
+    }
 }
