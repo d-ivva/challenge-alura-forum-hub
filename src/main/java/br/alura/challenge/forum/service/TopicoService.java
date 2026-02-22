@@ -1,9 +1,12 @@
 package br.alura.challenge.forum.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.alura.challenge.forum.domain.Topico;
+import br.alura.challenge.forum.dto.DadosListagemTopico;
 import br.alura.challenge.forum.dto.DadosTopico;
 import br.alura.challenge.forum.repository.TopicoRepository;
 
@@ -21,6 +24,12 @@ public class TopicoService {
             repository.save(novoTopico);
         }
 
+    }
+
+    public List<DadosListagemTopico> listarTopicos(){
+        return repository.findAll().stream()
+                .map(DadosListagemTopico::new)
+                .toList();
     }
 
 }
