@@ -1,14 +1,16 @@
 package br.alura.challenge.forum.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import br.alura.challenge.forum.dto.DadosAtualizacaoTopico;
 import br.alura.challenge.forum.dto.DadosTopico;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,9 +32,11 @@ public class Topico {
     private String autor;
     private String mensagem;
     private String curso;
+    @Transient
     private String resposta;
+    @Column(columnDefinition = "tinyint")
     private boolean status;
-    private LocalDate dataCriacao;
+    private LocalDateTime dataCriacao;
 
     public Topico(DadosTopico dados) {
         this.autor = dados.autor();
@@ -40,7 +44,7 @@ public class Topico {
         this.mensagem = dados.mensagem();
         this.curso = dados.curso();
         this.status = false;
-        this.dataCriacao = LocalDate.now();
+        this.dataCriacao = LocalDateTime.now();
     }
 
    public void atualizarInformacoes(DadosAtualizacaoTopico dados) {

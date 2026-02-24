@@ -1,6 +1,6 @@
 package br.alura.challenge.forum.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import br.alura.challenge.forum.domain.Topico;
 
@@ -12,7 +12,7 @@ public record DadosListagemTopico(
     String curso,
     String resposta,
     boolean status,
-    LocalDate dataCriacao
+    LocalDateTime dataCriacao
 ) {
 
     public DadosListagemTopico(Topico topico){
